@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopX – Online Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-ring"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Shop<em>X</em></span>
+      </div>
+
+      <div class="search-wrap">
+        <div class="search-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <input type="text" id="searchBox" placeholder="Search for products…" autocomplete="off" />
+        <div class="search-clear" id="searchClear">✕</div>
+      </div>
+
+      <nav class="header-actions">
+        <span class="nav-btn orders" id="ordersBtn" style="display:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          Orders
+        </span>
+        <span class="nav-btn cart" id="cartBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart
+          <span class="cart-badge" id="cartBadge">0</span>
+        </span>
+        <span class="nav-btn account" id="accountBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="8" r="4"/></svg>
+          <span id="accountLabel">Login</span>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-tag">New Arrivals 2026</p>
+      <h1 class="hero-title">Elevate Your<br><span>Everyday Style</span></h1>
+      <p class="hero-sub">Curated products designed for those who value quality, aesthetics, and modern living.</p>
+      <a href="#allProducts" class="hero-cta">Explore Collection</a>
+    </div>
+    <div class="hero-floating-card">
+      <div class="floating-icon">🔥</div>
+      <div class="floating-text">
+        <strong>48 items</strong> sold in last 24h
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY PILLS -->
+  <section class="categories">
+    <div class="cat-scroll" id="catScroll">
+      <button class="cat-pill active" data-cat="all">All</button>
+      <button class="cat-pill" data-cat="phone">📱 Phone</button>
+      <button class="cat-pill" data-cat="laptop">💻 Laptop</button>
+      <button class="cat-pill" data-cat="smartwatches">⌚ Watches</button>
+      <button class="cat-pill" data-cat="fragrances">🧴 Fragrances</button>
+      <button class="cat-pill" data-cat="skincare">✨ Skincare</button>
+      <button class="cat-pill" data-cat="groceries">🛒 Groceries</button>
+      <button class="cat-pill" data-cat="sports">⚽ Sports</button>
+    </div>
+  </section>
+
+  <!-- TOP DEALS SLIDER -->
+  <section class="slider-section">
+    <div class="section-head">
+      <h2>Top Deals</h2>
+      <span class="section-tag">Limited Time Offers</span>
+    </div>
+    <div class="slider-wrapper">
+      <button class="slider-arrow slider-prev" id="sliderPrev">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="slider-track" id="sliderContainer"></div>
+      <button class="slider-arrow slider-next" id="sliderNext">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar">
+    <div class="stat-item"><span class="stat-num">10K+</span><span class="stat-label">Happy Customers</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Products</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="stat-num">24/7</span><span class="stat-label">Support</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="stat-num">Free</span><span class="stat-label">Shipping Over ₹500</span></div>
+  </section>
+
+  <!-- ALL PRODUCTS -->
+  <section class="products" id="allProducts">
+    <div class="section-head">
+      <h2>All Products</h2>
+      <div class="product-controls">
+        <span class="product-count" id="productCount">Loading…</span>
+        <select class="sort-select" id="sortSelect">
+          <option value="default">Sort by: Default</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="rating">Highest Rated</option>
+        </select>
+      </div>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+    <div class="load-more-wrap">
+      <button class="load-more-btn" id="loadMoreBtn" style="display:none;">
+        <span>Load More</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- PROMO BANNER -->
+  <section class="promo-banner">
+    <div class="promo-inner">
+      <div class="promo-left">
+        <p class="promo-tag">Exclusive Offer</p>
+        <h3>Get <span>20% Off</span> on your first order</h3>
+        <p class="promo-sub">Use code <strong>WELCOME20</strong> at checkout.</p>
+      </div>
+      <div class="promo-visual">
+        <div class="promo-circle"></div>
+        <div class="promo-emoji">🎁</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:12px;">
+          <span class="logo-icon">✦</span>
+          <span class="logo-text">Shop<em>X</em></span>
+        </div>
+        <p>Your go-to destination for curated products. Quality meets style.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#">About Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <a href="#">Help Center</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Shipping Info</a>
+          <a href="#">Returns</a>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ShopX. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <script src="js/home.js"></script>
+  <script>
+    // Cart click handler
+    document.getElementById("cartBtn").addEventListener("click", () => {
+      const user = sessionStorage.getItem("currentUser");
+      window.location.href = user ? "cart.html" : "login.html?redirect=cart.html";
+    });
+
+    // Back to top
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("visible", window.scrollY > 600);
+    });
+    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    // Search clear button
+    const searchBox = document.getElementById("searchBox");
+    const searchClear = document.getElementById("searchClear");
+    searchBox.addEventListener("input", () => {
+      searchClear.style.display = searchBox.value ? "flex" : "none";
+    });
+    searchClear.addEventListener("click", () => {
+      searchBox.value = "";
+      searchClear.style.display = "none";
+      loadProducts();
+    });
+
+    // Smooth scroll for hero CTA
+    document.querySelector(".hero-cta").addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("allProducts").scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
