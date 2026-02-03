@@ -1,8 +1,9 @@
 # Software Requirement Specification (SRS)
 
 **Project Name:** ShopX E-Commerce Platform
+**Project URL:** https://shopxecom.netlify.app/
 **Version:** 1.0
-**Date:** October 26, 2023
+**Date:** Feb 01, 2026
 
 ## 1. Introduction
 
