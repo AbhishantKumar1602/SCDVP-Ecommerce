@@ -54,7 +54,7 @@ function initAuth() {
 
 async function loadProducts() {
   try {
-    const res = await fetch(BASE_API);
+    const res = await fetch(`${BASE_API}?limit=0`);
     const data = await res.json();
 
     allProducts = data.products;
@@ -78,7 +78,7 @@ async function searchProducts(query) {
   }
 
   try {
-    const res = await fetch(`${BASE_API}/search?q=${query}`);
+    const res = await fetch(`${BASE_API}/search?q=${query}&limit=0`);
     const data = await res.json();
 
     filteredProducts = data.products;

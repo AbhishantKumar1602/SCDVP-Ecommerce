@@ -203,7 +203,7 @@ function toggleWishlist() {
 
 async function loadRelatedProducts(category) {
   try {
-    const res = await fetch(`${API}/category/${encodeURIComponent(category)}`);
+    const res = await fetch(`${API}/category/${encodeURIComponent(category)}?limit=0`);
     const data = await res.json();
 
     // Filter out the current product and limit to 4

@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initPasswordToggle();
   initInputCleanup();
   initSocialLogins();
+  initForgotPassword();
 
   // If already logged in, redirect
   const user = sessionStorage.getItem("currentUser");
@@ -165,6 +166,79 @@ function setLoading(isLoading) {
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+/* ===================== FORGOT PASSWORD ===================== */
+
+function initForgotPassword() {
+  // Try to find the link by ID or text content
+  const forgotLink = document.getElementById("forgotPw") || 
+    Array.from(document.querySelectorAll("a")).find(a => a.innerText && a.innerText.toLowerCase().includes("forgot"));
+
+  if (!forgotLink) return;
+
+  forgotLink.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const email = prompt("Please enter your registered email address:");
+    if (!email) return;
+
+    if (!isValidEmail(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // 1. Check if user exists
+      const searchRes = await fetch(
+        `${SHEETDB_BASE}/search?sheet=users&email=${encodeURIComponent(email)}`
+      );
+      const users = await searchRes.json();
+
+      if (!users || users.length === 0) {
+        setLoading(false);
+        alert("No account found with this email.");
+        return;
+      }
+
+      // Handle case where name might be missing in DB
+      const userName = users[0].name || users[0].Name || users[0].fullname || users[0].fullName || email;
+
+      // 2. Ask for new password
+      const newPass = prompt(`Account found for ${userName}. Enter new password:`);
+      
+      if (!newPass) return;
+      
+      if (newPass.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+      }
+
+      // 3. Update password
+      const updateRes = await fetch(`${SHEETDB_BASE}/email/${encodeURIComponent(email)}?sheet=users`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: newPass })
+      });
+
+      if (updateRes.ok) {
+        alert("Password reset successfully! Please login.");
+        emailInput.value = email;
+        passwordInput.value = "";
+        passwordInput.focus();
+      } else {
+        throw new Error("Update failed");
+      }
+
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  });
 }
 
 /* ===================== SOCIAL LOGINS ===================== */

@@ -256,6 +256,7 @@ form.addEventListener("submit", async (e) => {
       name,
       email,
       password,
+      status: "active",
       createdAt: new Date().toISOString(),
     };
 
